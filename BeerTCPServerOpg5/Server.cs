@@ -18,6 +18,7 @@ namespace BeerTCPServerOpg5
         {
             Int32 port = 4646;
             IPAddress iPAddress = IPAddress.Loopback;
+            server = new TcpListener(iPAddress, port);
             server.Start();
             Console.WriteLine("server started");
             try
