@@ -11,24 +11,27 @@ namespace BeerTCPServerOpg5
 {
     public class Server
     {
-        private TcpListener server = null;
         private static List<Beer> _beers = new List<Beer>();
-
         public void start()
         {
-            Int32 port = 4646;
-            IPAddress iPAddress = IPAddress.Loopback;
-            server = new TcpListener(iPAddress, port);
-            server.Start();
-            Console.WriteLine("server started");
+            TcpListener server = null;
             try
             {
-                TcpClient tcpSocket = server.AcceptTcpClient();
-                Task.Run(() =>
+                Int32 port = 4646;
+                IPAddress iPAddress = IPAddress.Loopback;
+                server = new TcpListener(iPAddress, port);
+                server.Start();
+                Console.WriteLine("server started");
+                while (true)
                 {
-                    TcpClient tempSocket = tcpSocket;
-                    Doclient(tempSocket);
-                });
+                    TcpClient tcpSocket = server.AcceptTcpClient();
+                    Task.Run(() =>
+                    {
+                        TcpClient tempSocket = tcpSocket;
+                        Doclient(tempSocket);
+                    });
+                }
+                server.Stop();
             }
             catch (SocketException e)
             {
