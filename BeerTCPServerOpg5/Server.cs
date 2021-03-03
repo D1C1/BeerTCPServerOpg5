@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -34,7 +35,24 @@ namespace BeerTCPServerOpg5
 
         private void Doclient(TcpClient tempSocket)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("server activated");
+            Stream ns = tempSocket.GetStream();
+
+            StreamReader sr = new StreamReader(ns);
+            StreamWriter sw = new StreamWriter(ns);
+            sw.AutoFlush = true;
+            bool keepGoing = true;
+            while (keepGoing)
+            {
+                string message = sr.ReadLine();
+                if (message == "stop")
+                {
+                    keepGoing = false;
+                }
+
+            }
+            ns.Close();
+            tempSocket.Close();
         }
     }
 }
