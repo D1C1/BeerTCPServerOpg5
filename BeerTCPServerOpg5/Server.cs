@@ -47,11 +47,24 @@ namespace BeerTCPServerOpg5
             while (keepGoing)
             {
                 string message = sr.ReadLine();
-                if (message == "stop")
+                switch (message)
                 {
-                    keepGoing = false;
+                    case "stop":
+                        keepGoing = false;
+                        break;
+                    case "HentAlle":
+                        sw.WriteLine("Henter alle øl");
+                        break;
+                    case "Hent":
+                        sw.WriteLine("skriv venligst id til øl");
+                        break;
+                    case "Gem":
+                        sw.WriteLine("Skriv venligst din nye øl i JSON format");
+                        break;
+                    default:
+                        sw.WriteLine("Dette er ikke en mulighed");
+                        break;
                 }
-
             }
             ns.Close();
             tempSocket.Close();
