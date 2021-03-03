@@ -63,7 +63,7 @@ namespace BeerTCPServerOpg5
                         sw.WriteLine("skriv venligst id til øl");
                         break;
                     case "Gem":
-                        sw.WriteLine("Skriv venligst din nye øl i JSON format");
+                        sw.WriteLine("Skriv venligst din nye øl i JSON format som f.eks. {}");
                         break;
                     default:
                         sw.WriteLine("Dette er ikke en mulighed");
