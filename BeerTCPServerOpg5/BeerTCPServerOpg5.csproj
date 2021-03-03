@@ -5,4 +5,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="BeerMorten">
+      <HintPath>..\..\..\..\Users\D1C1\Documents\Zealand\CodeProg3\BeerMorten\BeerMorten\bin\Debug\netcoreapp3.1\BeerMorten.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

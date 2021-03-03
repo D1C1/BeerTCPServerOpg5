@@ -5,12 +5,14 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using BeerMorten;
 
 namespace BeerTCPServerOpg5
 {
-    class Server
+    public class Server
     {
         private TcpListener server = null;
+        private static List<Beer> _beers = new List<Beer>();
 
         public void start()
         {
