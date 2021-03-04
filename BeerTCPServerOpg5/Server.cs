@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using BeerMorten;
+using Newtonsoft.Json;
 
 namespace BeerTCPServerOpg5
 {
@@ -57,13 +58,42 @@ namespace BeerTCPServerOpg5
                         keepGoing = false;
                         break;
                     case "HentAlle":
-                        sw.WriteLine("Henter alle øl");
+                        sw.WriteLine("Henter alle &oslash;l");
+                        foreach (var VARIABLE in _beers)
+                        {
+                            sw.WriteLine(VARIABLE.ToString());
+                        }
+                        
                         break;
                     case "Hent":
-                        sw.WriteLine("skriv venligst id til øl");
+                        sw.WriteLine("skriv venligst id til &oslash;l");
+                        try
+                        {
+                            int id = Convert.ToInt32(sr.ReadLine());
+                            sw.WriteLine(_beers.Find(beer => beer.Id == id));
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("ikke korrekt input streng pr&oslash;v igen");
+                        }
                         break;
                     case "Gem":
-                        sw.WriteLine("Skriv venligst din nye øl i JSON format som f.eks. {}");
+                        sw.WriteLine("Skriv venligst din nye l i JSON format som f.eks. {}");
+                        string jsonBeer = sr.ReadLine();
+                        if (jsonBeer != null)
+                        {
+                            try
+                            {
+                                Beer newBeer = JsonConvert.DeserializeObject<Beer>(jsonBeer);
+                                _beers.Add(newBeer);
+                            }
+                            catch (Exception e)
+                            {
+                                sw.WriteLine("Dette matcher ikke et json objekt prøv igen");
+                            }
+                            
+                        }
+
                         break;
                     default:
                         sw.WriteLine("Dette er ikke en mulighed");
