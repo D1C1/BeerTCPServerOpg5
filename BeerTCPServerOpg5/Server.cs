@@ -84,7 +84,6 @@ namespace BeerTCPServerOpg5
                             {
                                 Beer newBeer = JsonConvert.DeserializeObject<Beer>(jsonBeer);
                                 _beers.Add(newBeer);
-                                sw.WriteLine("succes");
                             }
                             catch (JsonReaderException e)
                             {
@@ -93,7 +92,6 @@ namespace BeerTCPServerOpg5
                         }
                         break;
                     default:
-                        sw.WriteLine("Dette er ikke en mulighed");
                         break;
                 }
             }
