@@ -63,7 +63,6 @@ namespace BeerTCPServerOpg5
                         {
                             sw.WriteLine(VARIABLE.ToString());
                         }
-                        
                         break;
                     case "Hent":
                         try
